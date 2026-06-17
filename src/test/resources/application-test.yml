@@ -1,0 +1,74 @@
+spring:
+  config:
+    import: optional:classpath:../../../dev/dev.properties
+  datasource:
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;MODE=MySQL
+  jpa:
+    database: h2
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate.hibernate.dialect: org.hibernate.dialect.H2Dialect
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: false
+      fail-on-null-for-primitives: false
+google:
+  auth-uri: https://accounts.google.com/o/oauth2/auth
+  token-uri: https://oauth2.googleapis.com/token
+  client-id: ${GOOGLE_CLIENT_ID}
+  client-secret: ${GOOGLE_CLIENT_SECRET}
+  redirect-uri: http://localhost:8888/Callback
+  key-file: key.json
+
+service:
+  marketing:
+    positions:
+      "[Зонты]": 10
+      "[Зонты автомат]": 20
+    sku-to-group:
+      "[3340285564]": "Зонты"
+      "[1134671293]": "Зонты"
+      "[1134715033]": "Зонты"
+      "[1134731178]": "Зонты"
+      "[1134733705]": "Зонты"
+      "[1135684591]": "Зонты"
+      "[3389954573]": "Зонты"
+      "[3340294438]": "Зонты"
+      "[2551437754]": "Зонты"
+      "[3250075155]": "Зонты автомат"
+      "[3250068021]": "Зонты автомат"
+      "[3250069990]": "Зонты автомат"
+      "[3250052475]": "Зонты автомат"
+      "[1589800338]": "сумка пляж"
+      "[1589765459]": "сумка пляж"
+      "[1589762463]": "сумка пляж"
+      "[1762856726]": "коврик для ванной"
+  google-drive-files:
+    marketing: ${MARKETING_FILE_ID}
+    analytic: ${ANALYTIC_FILE_ID}
+    output: ${OUTPUT_FILE_ID}
+  analytic:
+    sku-to-category:
+      "[3340285564]": "Зонт"
+      "[1134671293]": "Зонт"
+      "[1134715033]": "Зонт"
+      "[1134731178]": "Зонт"
+      "[1134733705]": "Зонт"
+      "[1135684591]": "Зонт"
+      "[3389954573]": "Зонт"
+      "[3340294438]": "Зонт"
+      "[3250075155]": "Зонт"
+      "[3250068021]": "Зонт"
+      "[3250069990]": "Зонт"
+      "[3250052475]": "Зонт"
+      "[2551437754]": "Зонт"
+      "[1589800338]": "Сумка"
+      "[1589765459]": "Сумка"
+      "[1589762463]": "Сумка"
+
+

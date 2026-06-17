@@ -1,0 +1,644 @@
+{
+  "result": [
+    {
+      "macrolocal_cluster_id": 4001,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": 23402539267000,
+            "name": "МИНСК_МПСЦ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Беларусь",
+          "country": {
+            "uid": "061b16ee-90a7-51bf-8af6-491737c8fd62",
+            "name": "Беларусь"
+          }
+        }
+      }
+    },
+    {
+      "macrolocal_cluster_id": 4002,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": "1020000890160000",
+            "name": "ХАБАРОВСК_2_РФЦ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Дальний Восток",
+          "country": {
+            "uid": "42fb1c32-0cfe-5c96-9fb5-7f8e8449f28c",
+            "name": "Россия"
+          }
+        }
+      }
+    },
+    {
+      "macrolocal_cluster_id": 4004,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": 22294782253000,
+            "name": "КАЛИНИНГРАД_МРФЦ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Калининград",
+          "country": {
+            "uid": "42fb1c32-0cfe-5c96-9fb5-7f8e8449f28c",
+            "name": "Россия"
+          }
+        }
+      }
+    },
+    {
+      "macrolocal_cluster_id": 4007,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": "1020001649180000",
+            "name": "СПБ_КОЛПИНО_РФЦ"
+          },
+          {
+            "warehouse_id": "1020000613861000",
+            "name": "СПБ_ШУШАРЫ_РФЦ"
+          },
+          {
+            "warehouse_id": "1020001025471000",
+            "name": "СПБ_ШУШАРЫ_РФЦ_НЕГАБАРИТ"
+          },
+          {
+            "warehouse_id": "1020001443754000",
+            "name": "СПБ_ВОЛХОНКА_РФЦ_НЕГАБАРИТ"
+          },
+          {
+            "warehouse_id": 18044249781000,
+            "name": "САНКТ-ПЕТЕРБУРГ_РФЦ"
+          },
+          {
+            "warehouse_id": 23903599483000,
+            "name": "СПБ_БУГРЫ_РФЦ"
+          },
+          {
+            "warehouse_id": "1020000974650000",
+            "name": "СПБ_БУГРЫ_РФЦ_ЮВЕЛИРНЫЙ"
+          },
+          {
+            "warehouse_id": "1020002458103000",
+            "name": "СПБ_ВОЛХОНКА_2_РФЦ_ПАЛЛЕТНЫЙ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Санкт-Петербург и СЗО",
+          "country": {
+            "uid": "42fb1c32-0cfe-5c96-9fb5-7f8e8449f28c",
+            "name": "Россия"
+          }
+        }
+      }
+    },
+    {
+      "macrolocal_cluster_id": 4015,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": "1020000407473000",
+            "name": "ЕРЕВАН_МРФЦ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Армения",
+          "country": {
+            "uid": "615160a2-f06b-5b23-a217-3d40ecb87fa1",
+            "name": "Армения"
+          }
+        }
+      }
+    },
+    {
+      "macrolocal_cluster_id": 4036,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": "1020001007805000",
+            "name": "ВОРОНЕЖ_2_РФЦ"
+          },
+          {
+            "warehouse_id": 23684735180000,
+            "name": "ВОРОНЕЖ_РФЦ"
+          },
+          {
+            "warehouse_id": "1020002196480000",
+            "name": "ВОРОНЕЖ_РФЦ_НЕГАБАРИТ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Воронеж",
+          "country": {
+            "uid": "42fb1c32-0cfe-5c96-9fb5-7f8e8449f28c",
+            "name": "Россия"
+          }
+        }
+      }
+    },
+    {
+      "macrolocal_cluster_id": 4039,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": "1020002458344000",
+            "name": "ХОРУГВИНО_РФЦ_ПАЛЛЕТНЫЙ"
+          },
+          {
+            "warehouse_id": "1020000759116000",
+            "name": "НОГИНСК_РФЦ"
+          },
+          {
+            "warehouse_id": "1020001642383000",
+            "name": "НОГИНСК_РФЦ_НЕГАБАРИТ"
+          },
+          {
+            "warehouse_id": 23843917228000,
+            "name": "ПУШКИНО_1_РФЦ"
+          },
+          {
+            "warehouse_id": 23902289166000,
+            "name": "ПУШКИНО_2_РФЦ"
+          },
+          {
+            "warehouse_id": 15431806189000,
+            "name": "ХОРУГВИНО_РФЦ"
+          },
+          {
+            "warehouse_id": 19262731541000,
+            "name": "ХОРУГВИНО_КГТ"
+          },
+          {
+            "warehouse_id": "1020000241710000",
+            "name": "СОФЬИНО_РФЦ"
+          },
+          {
+            "warehouse_id": "1020002007811000",
+            "name": "РАДУМЛЯ_РФЦ_НЕГАБАРИТ"
+          },
+          {
+            "warehouse_id": "1020000268887000",
+            "name": "ПАВЛО_СЛОБОДСКОЕ_РФЦ_НЕГАБАРИТ"
+          },
+          {
+            "warehouse_id": 23948599159000,
+            "name": "ПЕТРОВСКОЕ_РФЦ"
+          },
+          {
+            "warehouse_id": "1020000115166000",
+            "name": "ЖУКОВСКИЙ_РФЦ"
+          },
+          {
+            "warehouse_id": "1020001853757000",
+            "name": "ДОМОДЕДОВО_РФЦ"
+          },
+          {
+            "warehouse_id": "1020000435290000",
+            "name": "ГРИВНО_РФЦ"
+          },
+          {
+            "warehouse_id": "1020000989855000",
+            "name": "ГРИВНО_РФЦ_НЕГАБАРИТ"
+          },
+          {
+            "warehouse_id": "1020003227965000",
+            "name": "ЖУКОВСКИЙ_ШИНЫ_РФЦ"
+          },
+          {
+            "warehouse_id": "1020001853954000",
+            "name": "ВАТУТИНКИ_РФЦ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Москва, МО и Дальние регионы",
+          "country": {
+            "uid": "42fb1c32-0cfe-5c96-9fb5-7f8e8449f28c",
+            "name": "Россия"
+          }
+        }
+      }
+    },
+    {
+      "macrolocal_cluster_id": 4040,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": "1020001836298000",
+            "name": "УФА_РФЦ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Уфа",
+          "country": {
+            "uid": "42fb1c32-0cfe-5c96-9fb5-7f8e8449f28c",
+            "name": "Россия"
+          }
+        }
+      }
+    },
+    {
+      "macrolocal_cluster_id": 4041,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": 18044494830000,
+            "name": "КАЗАНЬ_РФЦ_НОВЫЙ"
+          },
+          {
+            "warehouse_id": "1020002066005000",
+            "name": "КЗН_СТОЛБИЩЕ_РФЦ_НЕГАБАРИТ"
+          },
+          {
+            "warehouse_id": 23599177351000,
+            "name": "НИЖНИЙ_НОВГОРОД_РФЦ"
+          },
+          {
+            "warehouse_id": "1020003105329000",
+            "name": "НИЖНИЙ_НОВГОРОД_2_РФЦ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Казань",
+          "country": {
+            "uid": "42fb1c32-0cfe-5c96-9fb5-7f8e8449f28c",
+            "name": "Россия"
+          }
+        }
+      }
+    },
+    {
+      "macrolocal_cluster_id": 4042,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": 23128509046000,
+            "name": "САМАРА_РФЦ"
+          },
+          {
+            "warehouse_id": "1020001351192000",
+            "name": "САМАРА_РФЦ_ЮВЕЛИРНЫЙ"
+          },
+          {
+            "warehouse_id": "1020001443623000",
+            "name": "САМАРА_РФЦ_НЕГАБАРИТ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Самара",
+          "country": {
+            "uid": "42fb1c32-0cfe-5c96-9fb5-7f8e8449f28c",
+            "name": "Россия"
+          }
+        }
+      }
+    },
+    {
+      "macrolocal_cluster_id": 4043,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": 22296628035000,
+            "name": "КРАСНОЯРСК_МРФЦ"
+          },
+          {
+            "warehouse_id": "1020002690706000",
+            "name": "КРАСНОЯРСК_СТАРЦЕВО_РФЦ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Красноярск",
+          "country": {
+            "uid": "42fb1c32-0cfe-5c96-9fb5-7f8e8449f28c",
+            "name": "Россия"
+          }
+        }
+      }
+    },
+    {
+      "macrolocal_cluster_id": 4046,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": "1020002007530000",
+            "name": "ТЮМЕНЬ_РФЦ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Тюмень",
+          "country": {
+            "uid": "42fb1c32-0cfe-5c96-9fb5-7f8e8449f28c",
+            "name": "Россия"
+          }
+        }
+      }
+    },
+    {
+      "macrolocal_cluster_id": 4049,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": "1020001853897000",
+            "name": "САРАТОВ_РФЦ"
+          },
+          {
+            "warehouse_id": "1020000310035000",
+            "name": "ВОЛГОГРАД_РФЦ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Саратов",
+          "country": {
+            "uid": "42fb1c32-0cfe-5c96-9fb5-7f8e8449f28c",
+            "name": "Россия"
+          }
+        }
+      }
+    },
+    {
+      "macrolocal_cluster_id": 4051,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": "1020002006967000",
+            "name": "ЯРОСЛАВЛЬ_РФЦ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Ярославль",
+          "country": {
+            "uid": "42fb1c32-0cfe-5c96-9fb5-7f8e8449f28c",
+            "name": "Россия"
+          }
+        }
+      }
+    },
+    {
+      "macrolocal_cluster_id": 4065,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": "1020000267736000",
+            "name": "АДЫГЕЙСК_РФЦ"
+          },
+          {
+            "warehouse_id": "1020000974583000",
+            "name": "АДЫГЕЙСК_РФЦ_ЮВЕЛИРНЫЙ"
+          },
+          {
+            "warehouse_id": "1020001513671000",
+            "name": "ЮЖНЫЙ_ОБХОД_РФЦ_НЕГАБАРИТ"
+          },
+          {
+            "warehouse_id": 23601604393000,
+            "name": "НОВОРОССИЙСК_РФЦ"
+          },
+          {
+            "warehouse_id": "1020003111522000",
+            "name": "КРАСНОДАР_2_РФЦ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Краснодар",
+          "country": {
+            "uid": "42fb1c32-0cfe-5c96-9fb5-7f8e8449f28c",
+            "name": "Россия"
+          }
+        }
+      }
+    },
+    {
+      "macrolocal_cluster_id": 4066,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": 18044570445000,
+            "name": "ЕКАТЕРИНБУРГ_РФЦ_НОВЫЙ"
+          },
+          {
+            "warehouse_id": "1020001351115000",
+            "name": "ЕКАТЕРИНБУРГ_РФЦ_ЮВЕЛИРНЫЙ"
+          },
+          {
+            "warehouse_id": "1020001135128000",
+            "name": "ЕКАТЕРИНБУРГ_РФЦ_НЕГАБАРИТ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Екатеринбург",
+          "country": {
+            "uid": "42fb1c32-0cfe-5c96-9fb5-7f8e8449f28c",
+            "name": "Россия"
+          }
+        }
+      }
+    },
+    {
+      "macrolocal_cluster_id": 4067,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": 18044341087000,
+            "name": "НОВОСИБИРСК_РФЦ_НОВЫЙ"
+          },
+          {
+            "warehouse_id": "1020001351145000",
+            "name": "НОВОСИБИРСК_РФЦ_ЮВЕЛИРНЫЙ"
+          },
+          {
+            "warehouse_id": "1020005006580020",
+            "name": "КЕМЕРОВО_РФЦ"
+          },
+          {
+            "warehouse_id": "1020005006583540",
+            "name": "НОВОСИБИРСК_3_РФЦ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Новосибирск",
+          "country": {
+            "uid": "42fb1c32-0cfe-5c96-9fb5-7f8e8449f28c",
+            "name": "Россия"
+          }
+        }
+      }
+    },
+    {
+      "macrolocal_cluster_id": 4068,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": "1020001835468000",
+            "name": "ОМСК_РФЦ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Омск",
+          "country": {
+            "uid": "42fb1c32-0cfe-5c96-9fb5-7f8e8449f28c",
+            "name": "Россия"
+          }
+        }
+      }
+    },
+    {
+      "macrolocal_cluster_id": 4069,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": "1020001836200000",
+            "name": "ОРЕНБУРГ_РФЦ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Оренбург",
+          "country": {
+            "uid": "42fb1c32-0cfe-5c96-9fb5-7f8e8449f28c",
+            "name": "Россия"
+          }
+        }
+      }
+    },
+    {
+      "macrolocal_cluster_id": 4070,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": "1020001853819000",
+            "name": "ПЕРМЬ_РФЦ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Пермь",
+          "country": {
+            "uid": "42fb1c32-0cfe-5c96-9fb5-7f8e8449f28c",
+            "name": "Россия"
+          }
+        }
+      }
+    },
+    {
+      "macrolocal_cluster_id": 4071,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": 17717042026000,
+            "name": "РОСТОВ-НА-ДОНУ_РФЦ"
+          },
+          {
+            "warehouse_id": "1020003110535000",
+            "name": "РОСТОВ_НА_ДОНУ_2_РФЦ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Ростов",
+          "country": {
+            "uid": "42fb1c32-0cfe-5c96-9fb5-7f8e8449f28c",
+            "name": "Россия"
+          }
+        }
+      }
+    },
+    {
+      "macrolocal_cluster_id": 4072,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": 23021125185000,
+            "name": "ТВЕРЬ_РФЦ"
+          },
+          {
+            "warehouse_id": 6048863967000,
+            "name": "ТВЕРЬ_РФЦ_ЮВЕЛИРНЫЙ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Тверь",
+          "country": {
+            "uid": "42fb1c32-0cfe-5c96-9fb5-7f8e8449f28c",
+            "name": "Россия"
+          }
+        }
+      }
+    },
+    {
+      "macrolocal_cluster_id": 4074,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": "1020001854016000",
+            "name": "АЛМАТЫ_2_РФЦ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Алматы",
+          "country": {
+            "uid": "25ab8e1d-4cab-5c18-a226-67dfb56dac7f",
+            "name": "Казахстан"
+          }
+        }
+      }
+    },
+    {
+      "macrolocal_cluster_id": 4075,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": "1020000367015000",
+            "name": "АСТАНА_РФЦ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Астана",
+          "country": {
+            "uid": "25ab8e1d-4cab-5c18-a226-67dfb56dac7f",
+            "name": "Казахстан"
+          }
+        }
+      }
+    },
+    {
+      "macrolocal_cluster_id": 4076,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": "1020001351243000",
+            "name": "НЕВИННОМЫССК_РФЦ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Невинномысск",
+          "country": {
+            "uid": "42fb1c32-0cfe-5c96-9fb5-7f8e8449f28c",
+            "name": "Россия"
+          }
+        }
+      }
+    },
+    {
+      "macrolocal_cluster_id": 4077,
+      "data": {
+        "fulfillments": [
+          {
+            "warehouse_id": "1020003111941000",
+            "name": "МАХАЧКАЛА_РФЦ"
+          }
+        ],
+        "macrolocal_cluster": {
+          "name": "Махачкала",
+          "country": {
+            "uid": "42fb1c32-0cfe-5c96-9fb5-7f8e8449f28c",
+            "name": "Россия"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+spring:
+  config:
+    import: optional:classpath:../../../dev/dev.properties
+  application:
+    name: ozon-analytic-collector
+  grpc:
+    server:
+      port: 9090
+  security:
+    oauth2:
+      client:
+        registration:
+          ozon:
+            provider: ozon-perf-api
+            client-id: ${OZON_PERF_API_CLIENT_ID}
+            client-name: ozon
+            client-secret: ${OZON_PERF_API_CLIENT_SECRET}
+            authorization-grant-type: client_credentials
+        provider:
+          ozon-perf-api:
+            token-uri: https://api-performance.ozon.ru/api/client/token
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ozon-analytics
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jackson:
+    deserialization:
+      fail-on-null-for-primitives: false
+      fail-on-unknown-properties: false
+  docker:
+    compose:
+      file: dev/docker-compose.yaml
+      enabled: true
+
+ozon:
+  url: https://api-seller.ozon.ru
+  client-id: ${OZON_CLIENT_ID}
+  client-secret: ${OZON_CLIENT_SECRET}
+  perf-api-url: https://api-performance.ozon.ru/api/client
+
+google:
+  auth-uri: https://accounts.google.com/o/oauth2/auth
+  token-uri: https://oauth2.googleapis.com/token
+  client-id: ${GOOGLE_CLIENT_ID}
+  client-secret: ${GOOGLE_CLIENT_SECRET}
+  redirect-uri: http://localhost:8888/Callback
+
+service:
+  collector:
+    analytic:
+      cron: 0 0 8 * * *
+  marketing:
+    positions:
+      "[Зонты]": 10
+      "[Зонты автомат]": 20
+      "[сумка пляж]": 40
+      "[кофры]": 50
+      "[коврик для ванной]": 70
+    sku-to-group:
+      "[1134671293]": "Зонты"
+      "[1134715033]": "Зонты"
+      "[1134731178]": "Зонты"
+      "[1134733705]": "Зонты"
+      "[1135684591]": "Зонты"
+      "[3389954573]": "Зонты"
+      "[3340294438]": "Зонты"
+      "[3250075155]": "Зонты автомат"
+      "[3250068021]": "Зонты автомат"
+      "[3250069990]": "Зонты автомат"
+      "[3250052475]": "Зонты автомат"
+      "[1589800338]": "сумка пляж"
+      "[1589765459]": "сумка пляж"
+      "[1589762463]": "сумка пляж"
+      "[1762856726]": "коврик для ванной"
+
+  skus:
+    - 3389954573
+    - 3340294438
+    - 3340285564
+    - 3250075155
+    - 3250068021
+    - 3250069990
+    - 3250052475
+    - 1589800338
+    - 1589765459
+    - 1589762463
+    - 1134733705
+    - 1134731178
+    - 1134715033
+    - 1134671293
+  analytic:
+    sku-to-category:
+      "[1134671293]": "Зонт"
+      "[1134715033]": "Зонт"
+      "[1134731178]": "Зонт"
+      "[1134733705]": "Зонт"
+      "[1135684591]": "Зонт"
+      "[3389954573]": "Зонт"
+      "[3340294438]": "Зонт"
+      "[3250075155]": "Зонт"
+      "[3250068021]": "Зонт"
+      "[3250069990]": "Зонт"
+      "[3250052475]": "Зонт"
+      "[1589800338]": "Сумка"
+      "[1589765459]": "Сумка"
+      "[1589762463]": "Сумка"
+  google-drive-files:
+    marketing: ${MARKETING_FILE_ID}
+    analytic: ${ANALYTIC_FILE_ID}
+    output: ${OUTPUT_FILE_ID}
+

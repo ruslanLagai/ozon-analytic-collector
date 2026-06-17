@@ -1,0 +1,13 @@
+services:
+  posgres:
+    image: postgres:15.3-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ozon_name
+    volumes:
+      - storage:/var/lib/postgresql/data
+volumes:
+  storage:
