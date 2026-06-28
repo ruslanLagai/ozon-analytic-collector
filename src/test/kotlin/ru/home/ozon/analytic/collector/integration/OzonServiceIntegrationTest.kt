@@ -32,7 +32,7 @@ class OzonServiceIntegrationTest {
     @Test
     fun getPostingReport() {
         runBlocking {
-            val from  = LocalDate.now().minusDays(1).atStartOfDay(ZoneOffset.UTC)
+            val from  = LocalDate.now().minusDays(30).atStartOfDay(ZoneOffset.UTC)
             val to = LocalDate.now().atStartOfDay(ZoneOffset.UTC)
             val result = ozonService.getPostingReport(from = from, to = to)
 

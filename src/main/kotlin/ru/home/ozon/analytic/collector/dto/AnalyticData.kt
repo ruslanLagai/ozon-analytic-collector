@@ -4,6 +4,8 @@ data class AnalyticData(
     var sku: String = "",
     var ctr: Double = 0.0,
     var ordered: Int = 0,
+    var viewsInSearch: Int = 0,
+    var clicks: Int = 0,
     var conversionFromClickToBasket: Double = 0.0,
     var conversionFromBasketToOrder: Double = 0.0
 ) {
@@ -13,7 +15,9 @@ data class AnalyticData(
             ctr = this.ctr,
             ordered = this.ordered,
             conversionFromClickToBasket = this.conversionFromClickToBasket,
-            conversionFromBasketToOrder = this.conversionFromBasketToOrder
+            conversionFromBasketToOrder = this.conversionFromBasketToOrder,
+            viewsInSearch = this.viewsInSearch,
+            clicks = this.clicks
         )
     }
 }

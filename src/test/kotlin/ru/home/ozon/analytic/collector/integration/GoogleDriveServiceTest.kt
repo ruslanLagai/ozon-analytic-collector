@@ -55,10 +55,11 @@ class GoogleDriveServiceTest {
         val ordersInCluster = mapOf(
             "Москва, МО и Дальние регионы" to 10,
             "Санкт-Петербург и СЗО" to 2,
+            "Беларусь" to 4
         )
         val ordersData = mapOf(
-            "3389954573" to OrdersWithSPPData(spp = 1.0, sppPercentage = 0.1, ordered = 5, sku = "3389954573", offerId = "", clusterOrders = ordersInCluster),
-            "3340285564" to OrdersWithSPPData(spp = 2.0, sppPercentage = 0.1, ordered = 5, sku = "3340285564", offerId = "", clusterOrders = ordersInCluster)
+            "3389954573" to OrdersWithSPPData(spp = 1.0, sppPercentage = 0.1, ordered = 5, sku = "3389954573", offerId = "", clusterOrders = ordersInCluster, paidByCustomer = 10.0, deliveryPercentage = 70.0),
+            "3340285564" to OrdersWithSPPData(spp = 2.0, sppPercentage = 0.1, ordered = 5, sku = "3340285564", offerId = "", clusterOrders = ordersInCluster, paidByCustomer = 20.0, deliveryPercentage = 80.0)
         )
         val stocksInCluster = mapOf(
             "Москва, МО и Дальние регионы" to StocksInCluster(1L, "", 20),

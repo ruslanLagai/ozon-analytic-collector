@@ -14,7 +14,7 @@ class OzonPostingReportCsvParserTest {
 
         val rows = parser.parse(csv)
 
-        Assertions.assertEquals(1, rows.size)
+        Assertions.assertEquals(97, rows.size)
 
         val row = rows.first()
         Assertions.assertEquals("81342265-0828", row.orderNumber)

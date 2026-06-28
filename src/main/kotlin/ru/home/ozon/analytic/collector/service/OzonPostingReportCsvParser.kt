@@ -6,6 +6,8 @@ import org.apache.commons.csv.CSVRecord
 import org.springframework.stereotype.Service
 import ru.home.ozon.analytic.collector.dto.ozon.report.OzonPostingReportRowDto
 import java.io.StringReader
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 @Service
 class OzonPostingReportCsvParser {
@@ -32,7 +34,8 @@ class OzonPostingReportCsvParser {
     private fun toRowDto(record: CSVRecord): OzonPostingReportRowDto = OzonPostingReportRowDto(
         orderNumber = record.get("Номер заказа"),
         postingNumber = record.get("Номер отправления"),
-        acceptedAt = record.get("Принят в обработку"),
+        orderFrom = record.get("Откуда заказ"),
+        acceptedAt = LocalDateTime.parse(record.get("Принят в обработку"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
         shipmentDate = record.get("Дата отгрузки"),
         status = record.get("Статус"),
         deliveryDate = record.get("Дата доставки"),

@@ -1,4 +1,6 @@
 spring:
+  flyway:
+    enabled: false
   config:
     import: optional:classpath:../../../dev/dev.properties
   datasource:

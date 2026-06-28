@@ -1,4 +1,9 @@
 spring:
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:migration
+    schemas: ozon-analytics
   config:
     import: optional:classpath:../../../dev/dev.properties
   application:
@@ -31,14 +36,20 @@ spring:
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
-  jackson:
-    deserialization:
-      fail-on-null-for-primitives: false
-      fail-on-unknown-properties: false
   docker:
     compose:
       file: dev/docker-compose.yaml
-      enabled: true
+      enabled: false
+  jackson:
+    mapper:
+      default-view-inclusion: true
+    deserialization:
+      fail-on-trailing-tokens: false
+      fail-on-null-for-primitives: false
+      fail-on-unknown-properties: false
+  http:
+    codecs:
+      max-in-memory-size: 10MB
 
 ozon:
   url: https://api-seller.ozon.ru
@@ -72,6 +83,8 @@ service:
       "[1135684591]": "Зонты"
       "[3389954573]": "Зонты"
       "[3340294438]": "Зонты"
+      "[3340285564]": "Зонты"
+      "[2551437754]": "Зонты"
       "[3250075155]": "Зонты автомат"
       "[3250068021]": "Зонты автомат"
       "[3250069990]": "Зонты автомат"
@@ -98,6 +111,7 @@ service:
     - 1134671293
   analytic:
     sku-to-category:
+      "[3340285564]": "Зонт"
       "[1134671293]": "Зонт"
       "[1134715033]": "Зонт"
       "[1134731178]": "Зонт"

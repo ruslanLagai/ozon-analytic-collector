@@ -20,11 +20,11 @@ class AnalyticCollector(
     private val googleDriveService: GoogleDriveService
 ) {
 
-    @Scheduled(cron = "\${service.collector.analytic.cron}")
+    @Scheduled(cron = $$"${service.collector.analytic.cron}")
     fun collectData() {
         runBlocking {
-            val from = LocalDate.now().minusDays(2).atStartOfDay(ZoneId.of("UTC"))
-            val to = LocalDate.now().minusDays(1).atStartOfDay(ZoneId.of("UTC"))
+            val from = LocalDate.now().minusDays(30).atStartOfDay(ZoneId.of("UTC"))
+            val to = LocalDate.now().atStartOfDay(ZoneId.of("UTC"))
 
             val report = async(context = Dispatchers.Default, start = CoroutineStart.DEFAULT) {
                 ozonService.getPostingReport(from = from, to = to)

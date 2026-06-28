@@ -1,29 +1,33 @@
 package ru.home.ozon.analytic.collector.config
 
+import org.reactivestreams.Publisher
 import org.slf4j.LoggerFactory
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.io.buffer.DataBuffer
-import org.springframework.core.io.buffer.DefaultDataBufferFactory
 import org.springframework.core.io.buffer.DataBufferUtils
+import org.springframework.core.io.buffer.DefaultDataBufferFactory
 import org.springframework.http.HttpHeaders
+import org.springframework.http.HttpMethod
 import org.springframework.http.MediaType
 import org.springframework.http.client.reactive.ClientHttpRequest
 import org.springframework.http.client.reactive.ClientHttpRequestDecorator
-import org.springframework.web.reactive.function.client.ExchangeFilterFunction
-import org.springframework.web.reactive.function.client.ClientRequest
-import org.springframework.web.reactive.function.client.ClientResponse
-import org.springframework.web.reactive.function.client.WebClient
-import org.reactivestreams.Publisher
-import org.springframework.http.HttpMethod
+import org.springframework.http.client.reactive.ReactorClientHttpConnector
+import org.springframework.http.codec.ClientCodecConfigurer
+import org.springframework.http.codec.json.JacksonJsonDecoder
+import org.springframework.http.codec.json.JacksonJsonEncoder
 import org.springframework.security.oauth2.client.registration.ReactiveClientRegistrationRepository
 import org.springframework.security.oauth2.client.web.reactive.function.client.ServerOAuth2AuthorizedClientExchangeFilterFunction
 import org.springframework.security.oauth2.client.web.server.ServerOAuth2AuthorizedClientRepository
+import org.springframework.web.reactive.function.client.*
 import org.springframework.web.util.DefaultUriBuilderFactory
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
+import reactor.netty.http.client.HttpClient
 import ru.home.ozon.analytic.collector.config.properties.OzonProperties
+import tools.jackson.databind.DeserializationFeature
+import tools.jackson.databind.json.JsonMapper
 import java.nio.charset.StandardCharsets
 
 @Configuration
@@ -35,13 +39,37 @@ class ClientConfig {
 	@Bean
 	fun ozonWebClient(
         properties: OzonProperties,
-	): WebClient = WebClient.builder()
-        .defaultHeader("Client-Id", properties.clientId)
-        .defaultHeader("Api-Key", properties.clientSecret)
-		.baseUrl(properties.url)
-		.filter(logRequest())
-		.filter(logResponse())
-		.build()
+	): WebClient {
+		val mapper = JsonMapper.builder()
+			.configure(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES, false)
+			.build()
+		val httpClient = HttpClient.create().wiretap(true)
+		val strategies = ExchangeStrategies
+			.builder()
+			.codecs { clientDefaultCodecsConfigurer: ClientCodecConfigurer ->
+				clientDefaultCodecsConfigurer.defaultCodecs().jacksonJsonEncoder(
+					JacksonJsonEncoder(
+						mapper,
+						MediaType.APPLICATION_JSON
+					)
+				)
+				clientDefaultCodecsConfigurer.defaultCodecs().jacksonJsonDecoder(
+					JacksonJsonDecoder(
+						mapper,
+						MediaType.APPLICATION_JSON
+					)
+				)
+				clientDefaultCodecsConfigurer.defaultCodecs().maxInMemorySize(10 * 1024 * 1024)
+			}.build()
+		return WebClient.builder()
+			.clientConnector(ReactorClientHttpConnector(httpClient))
+			.exchangeStrategies(strategies)
+			.defaultHeader("Client-Id", properties.clientId)
+			.defaultHeader("Api-Key", properties.clientSecret)
+			.baseUrl(properties.url)
+			.filter(logRequest())
+			.build()
+	}
 
 	@Bean
 	fun ozonPerfApiWebClient(
@@ -57,7 +85,8 @@ class ClientConfig {
 
 		 return WebClient.builder()
 			 .baseUrl(properties.perfApiUrl)
-			.filter(filterOauth2)
+			 .codecs { configurer -> configurer.defaultCodecs().maxInMemorySize(10 * 1024 * 1024) }
+			 .filter(filterOauth2)
 			.filter(logRequest())
 			.filter(logResponse())
 			.build()
@@ -70,6 +99,7 @@ class ClientConfig {
 
 		return WebClient.builder()
 			.uriBuilderFactory(factory)
+			.codecs { configurer -> configurer.defaultCodecs().maxInMemorySize(10 * 1024 * 1024) }
 			.filter(logRequest())
 			.filter(logResponse())
 			.build()
@@ -197,7 +227,7 @@ class ClientConfig {
 	) : ClientHttpRequestDecorator(delegate) {
 
 		override fun writeWith(body: Publisher<out DataBuffer>): Mono<Void> =
-			DataBufferUtils.join(Flux.from(body))
+			DataBufferUtils.join(Flux.from(body), 10 * 1014 * 1024)
 				.defaultIfEmpty(bufferFactory().wrap(ByteArray(0)))
 				.flatMap { dataBuffer ->
 					val bytes = ByteArray(dataBuffer.readableByteCount())

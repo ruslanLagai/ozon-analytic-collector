@@ -1,6 +1,5 @@
 package ru.home.ozon.analytic.collector.util
 
-import com.fasterxml.jackson.module.kotlin.UByteSerializer.properties
 import org.springframework.core.env.PropertiesPropertySource
 import org.springframework.core.env.PropertySource
 import org.springframework.core.io.support.EncodedResource

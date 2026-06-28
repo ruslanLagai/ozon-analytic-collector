@@ -1,6 +1,6 @@
 package ru.home.ozon.analytic.collector.dto.ozon.report
 
-import java.math.BigDecimal
+import java.time.LocalDateTime
 
 /**
  * Строка CSV-отчета Ozon по отправлениям.
@@ -8,7 +8,8 @@ import java.math.BigDecimal
 data class OzonPostingReportRowDto(
     val orderNumber: String = "",
     val postingNumber: String = "",
-    val acceptedAt: String = "",
+    val orderFrom: String = "",
+    val acceptedAt: LocalDateTime = LocalDateTime.now(),
     val shipmentDate: String = "",
     val status: String = "",
     val deliveryDate: String = "",

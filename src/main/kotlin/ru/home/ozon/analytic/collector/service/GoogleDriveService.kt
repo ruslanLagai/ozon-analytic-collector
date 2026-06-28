@@ -26,6 +26,8 @@ class GoogleDriveService(
     private val serviceProperties: ServiceProperties
 ) {
 
+    private val log = org.slf4j.LoggerFactory.getLogger(GoogleDriveService::class.java)
+
     private val monthName = mapOf(
         1 to "Январь",
         2 to "Февраль",
@@ -69,57 +71,127 @@ class GoogleDriveService(
             val claudeSheet = workbook.getSheet("claude")!!
             val prevDayCol = getColumn(workbook)
             val skus = LinkedList<String>()
+            val marketingGroup = LinkedList<String>()
 
             for (i in 1..sheet.lastRowNum step 1) {
                 val value = sheet.getRow(i)?.getCell(0)?.let { cell ->
                     val formatter = DataFormatter()
                     formatter.formatCellValue(cell).trim()
                 }
-                if (!value.isNullOrEmpty()) {
+                if (!value.isNullOrEmpty() && value != "SKU") {
                     val sku = value.split(",")[0].trim()
                     skus.add(sku)
                 }
             }
 
-            var rowNum = 1
+            for (i in 1..20 step 1) {
+                val value = sheet.getRow(i)?.getCell(3)?.let { cell ->
+                    val formatter = DataFormatter()
+                    formatter.formatCellValue(cell).trim()
+                }
+                if (!value.isNullOrEmpty()) {
+                    val group = value.trim()
+                    marketingGroup.add(group)
+                }
+            }
+
+            var marketingRowNum = 1
+            for (group in marketingGroup) {
+                val marketing = marketingData.find { group == it.name }
+                if (marketing == null) {
+                    log.error("Marketing data is null for $group")
+                }
+
+                // marketing
+                var marketingRow = sheet.getRow(marketingRowNum)
+                marketingRow.createCell(prevDayCol).cellType = CellType.NUMERIC
+                marketingRow.getCell(prevDayCol).setCellValue(marketing?.drr ?: Double.NaN)
+
+                marketingRow = sheet.getRow(marketingRowNum + 1)
+                marketingRow.createCell(prevDayCol).cellType = CellType.NUMERIC
+                marketingRow.getCell(prevDayCol).setCellValue(marketing?.spentPerOrder ?: Double.NaN)
+
+                marketingRow = sheet.getRow(marketingRowNum + 2)
+                marketingRow.createCell(prevDayCol).cellType = CellType.NUMERIC
+                marketingRow.getCell(prevDayCol).setCellValue(marketing?.spent ?: Double.NaN)
+
+                marketingRowNum += 3
+            }
+
+            var rowNum = 23
             for (sku in skus) {
                 val analytic = analyticData[sku]
                 val orders = ordersData[sku]
                 val stocks = stocksData[sku]
-                val marketing = marketingData.find { serviceProperties.marketing.skuToGroup[sku] == it.name }
+                if (stocks == null) {
+                    log.error("Stocks data is null for $sku")
+                }
+                if (orders == null) {
+                    log.warn("Orders data is null for $sku")
+                }
+                if (analytic == null) {
+                    log.error("AnalyticData is null for $sku")
+                }
 
                 // analytic
                 var row = sheet.getRow(rowNum)
                 row.createCell(prevDayCol).cellType = CellType.NUMERIC
-                row.getCell(prevDayCol).setCellValue(orders!!.ordered.toDouble())
+                row.getCell(prevDayCol).setCellValue(orders?.ordered?.toDouble() ?: 0.0)
 
                 row = sheet.getRow(rowNum + 1)
-                row.createCell(prevDayCol).cellType = CellType.NUMERIC
-                row.getCell(prevDayCol).setCellValue(orders.spp)
+                if (orders == null) {
+                    row.createCell(prevDayCol).cellType = CellType.STRING
+                    row.getCell(prevDayCol).setCellValue("no data")
+                } else {
+                    row.createCell(prevDayCol).cellType = CellType.NUMERIC
+                    row.getCell(prevDayCol).setCellValue(orders.spp)
+                }
 
                 row = sheet.getRow(rowNum + 2)
-                row.createCell(prevDayCol).cellType = CellType.NUMERIC
-                row.getCell(prevDayCol).setCellValue(orders.sppPercentage)
+                if (orders == null) {
+                    row.createCell(prevDayCol).cellType = CellType.STRING
+                    row.getCell(prevDayCol).setCellValue("no data")
+                } else {
+                    row.createCell(prevDayCol).cellType = CellType.NUMERIC
+                    row.getCell(prevDayCol).setCellValue(orders.sppPercentage)
+                }
 
-                // marketing
                 row = sheet.getRow(rowNum + 3)
-                row.createCell(prevDayCol).cellType = CellType.NUMERIC
-                row.getCell(prevDayCol).setCellValue(marketing!!.drr)
+                if (orders == null) {
+                    row.createCell(prevDayCol).cellType = CellType.STRING
+                    row.getCell(prevDayCol).setCellValue("no data")
+                } else {
+                    row.createCell(prevDayCol).cellType = CellType.NUMERIC
+                    row.getCell(prevDayCol).setCellValue(orders.paidByCustomer)
+                }
 
                 row = sheet.getRow(rowNum + 4)
-                row.createCell(prevDayCol).cellType = CellType.NUMERIC
-                row.getCell(prevDayCol).setCellValue(marketing.spentPerOrder)
+                if (orders == null) {
+                    row.createCell(prevDayCol).cellType = CellType.STRING
+                    row.getCell(prevDayCol).setCellValue("no data")
+                } else {
+                    row.createCell(prevDayCol).cellType = CellType.NUMERIC
+                    row.getCell(prevDayCol).setCellValue(orders.deliveryPercentage)
+                }
 
                 // analytic
                 row = sheet.getRow(rowNum + 5)
                 row.createCell(prevDayCol).cellType = CellType.NUMERIC
-                row.getCell(prevDayCol).setCellValue(analytic!!.ctr)
+                row.getCell(prevDayCol).setCellValue(analytic!!.viewsInSearch.toDouble())
 
                 row = sheet.getRow(rowNum + 6)
                 row.createCell(prevDayCol).cellType = CellType.NUMERIC
-                row.getCell(prevDayCol).setCellValue(analytic.conversionFromClickToBasket)
+                row.getCell(prevDayCol).setCellValue(analytic.clicks.toDouble())
 
                 row = sheet.getRow(rowNum + 7)
+                row.createCell(prevDayCol).cellType = CellType.NUMERIC
+                row.getCell(prevDayCol).setCellValue(analytic.ctr)
+
+                row = sheet.getRow(rowNum + 8)
+                row.createCell(prevDayCol).cellType = CellType.NUMERIC
+                row.getCell(prevDayCol).setCellValue(analytic.conversionFromClickToBasket)
+
+                row = sheet.getRow(rowNum + 9)
                 row.createCell(prevDayCol).cellType = CellType.NUMERIC
                 row.getCell(prevDayCol).setCellValue(analytic.conversionFromBasketToOrder)
 
@@ -129,25 +201,30 @@ class GoogleDriveService(
                     "Сумка" -> 1
                     else -> throw IllegalArgumentException("Неизвестная категория для SKU: $sku")
                 }
-                val trend = formatter.formatCellValue(claudeSheet.getRow(categoryRowNum).getCell(1)).replace(",", ".").toDouble()
-                row = sheet.getRow(rowNum + 8)
-                row.createCell(prevDayCol).cellType = CellType.NUMERIC
-                row.getCell(prevDayCol).setCellValue(trend)
+                val trend = formatter.formatCellValue(claudeSheet.getRow(categoryRowNum).getCell(1)).replace(",", ".")
+                row = sheet.getRow(rowNum + 10)
+                if (trend.matches(Regex("\\d+"))) {
+                    row.createCell(prevDayCol).cellType = CellType.NUMERIC
+                    row.getCell(prevDayCol).setCellValue(trend.toDouble())
+                } else {
+                    row.createCell(prevDayCol).cellType = CellType.STRING
+                    row.getCell(prevDayCol).setCellValue(trend)
+                }
 
                 // stocks
-                for (i in rowNum + 9..rowNum + 31) {
+                for (i in rowNum + 11..rowNum + 33) {
                     val cluster = formatter.formatCellValue(sheet.getRow(i).getCell(4)).trim()
                     val leftInCluster = stocks!!.stocksInCluster[cluster]?.stock ?: 0.0
                     row = sheet.getRow(i)
                     row.createCell(prevDayCol).cellType = CellType.NUMERIC
                     row.getCell(prevDayCol).setCellValue(leftInCluster.toDouble())
                 }
-                rowNum += 31
+                rowNum += 33
 
                 // orders by cluster
                 for (i in rowNum + 1..rowNum + 23) {
                     val cluster = formatter.formatCellValue(sheet.getRow(i).getCell(4)).trim()
-                    val ordersInCluster = orders.clusterOrders[cluster] ?: 0
+                    val ordersInCluster = orders?.clusterOrders[cluster] ?: 0
                     row = sheet.getRow(i)
                     row.createCell(prevDayCol).cellType = CellType.NUMERIC
                     row.getCell(prevDayCol).setCellValue(ordersInCluster.toDouble())
@@ -229,6 +306,8 @@ class GoogleDriveService(
                     }
                     "Конверсия в заказ из корзины" -> analyticData.conversionFromBasketToOrder = formatter.formatCellValue(row.getCell(prevDayCol)).replace(",", ".").toDouble()
                     "Заказано товаров" -> analyticData.ordered = formatter.formatCellValue(row.getCell(prevDayCol)).replace(",", ".").toDouble().toInt()
+                    "Всего показов" -> analyticData.viewsInSearch = formatter.formatCellValue(row.getCell(prevDayCol)).replace(",", ".").toDouble().toInt()
+                    "Показы на карточке товара" -> analyticData.clicks = formatter.formatCellValue(row.getCell(prevDayCol)).replace(",", ".").toDouble().toInt()
                 }
                 if (formatter.formatCellValue(row.getCell(0)).isNotEmpty()) {
                     analyticData.sku = formatter.formatCellValue(row.getCell(0)).trim()

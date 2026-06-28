@@ -1,13 +1,9 @@
 package ru.home.ozon.analytic.collector.client
 
 import org.springframework.beans.factory.annotation.Qualifier
-import org.springframework.http.MediaType
-import org.springframework.security.oauth2.client.ReactiveOAuth2AuthorizedClientManager
-import org.springframework.security.oauth2.client.web.reactive.function.client.ServerOAuth2AuthorizedClientExchangeFilterFunction
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.BodyInserters
 import org.springframework.web.reactive.function.client.WebClient
-import org.springframework.web.reactive.function.client.WebClientException
 import org.springframework.web.reactive.function.client.WebClientRequestException
 import org.springframework.web.reactive.function.client.WebClientResponseException
 import org.springframework.web.reactive.function.client.bodyToMono
@@ -33,6 +29,7 @@ import ru.home.ozon.analytic.collector.exceptions.OzonException
 import java.time.Duration
 import java.time.LocalDate
 import java.time.ZonedDateTime
+
 
 @Component
 class OzonClient(
@@ -124,6 +121,7 @@ class OzonClient(
             skus = skus,
             clusterIds = clusters
         )
+
         return ozonWebClient.post()
             .uri { uriBuilder: UriBuilder ->
                 uriBuilder
@@ -133,15 +131,16 @@ class OzonClient(
             .body(BodyInserters.fromValue(request))
             .retrieve()
             .bodyToMono<GetStocksAnalyticsResponseDto>()
-            .map { resp ->
-                resp.items
-            }
-            .cache(Duration.ofHours(1))
-            .retryWhen(Retry.fixedDelay(3, Duration.ofSeconds(5))
-                .filter { throwable -> throwable is WebClientException }
+            .map { it.items }
+            .cache(
+                { Duration.ofHours(1) },
+                { Duration.ofSeconds(0) },
+                { Duration.ofSeconds(0) }
             )
-            .block()!!
-
+            .retryWhen(Retry.fixedDelay(5, Duration.ofSeconds(1))
+                .filter { throwable -> throwable is WebClientRequestException || throwable is WebClientResponseException }
+            )
+            .block() ?: emptyList()
     }
 
     /**
